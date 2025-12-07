@@ -1,0 +1,40 @@
+name: Manual Sync from Sheets2Website and Deploy
+
+on:
+  workflow_dispatch:   # Only run when manually triggered
+
+jobs:
+  sync_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout your repo (B)
+      - name: Checkout your site repo
+        uses: actions/checkout@v4
+
+      # Checkout upstream repo A
+      - name: Checkout upstream Sheets2Website
+        uses: actions/checkout@v4
+        with:
+          repository: 634252452/Sheets2Website
+          path: upstream
+
+      # Mirror content + add your config.json
+      - name: Prepare site build folder
+        run: |
+          rm -rf site_build
+          mkdir site_build
+
+          cp -r upstream/* site_build/
+          cp config.json site_build/
+
+      # No build step needed
+      - name: Build step (not needed)
+        run: echo "Static site — no build required."
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site_build
