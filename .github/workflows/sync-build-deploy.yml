@@ -1,7 +1,10 @@
-name: Manual Sync from Sheets2Website and Deploy
+name: Sync from Sheets2Website and Deploy (manual + daily)
 
 on:
   workflow_dispatch:
+  schedule:
+    # Automatically run workflow every day at 6:00 UTC
+    - cron: '0 6 * * *'
 
 permissions:
   contents: read
