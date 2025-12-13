@@ -8,9 +8,10 @@ This repository hosts the website for Politiche Forestali Ambientali, automatica
 
 2. **Configuration**: The `config.json` file specifies the URL of the Google Sheets to use.
 
-3. **Automatic build**: A GitHub Actions workflow (`.github/workflows/sync-build-deploy.yml`) runs:
+3. **Automatic build**: A GitHub Actions workflow (`.github/workflows/sync-build-deploy.yml`) synchronizes with the [Sheets2Website repository](https://github.com/634252452/Sheets2Website) to get the latest version of the tool:
    - Automatically every day at 6:00 UTC
    - Manually when triggered
+   - This build only updates the tool itself and has nothing to do with site content generation
 
 4. **Deployment**: The site is built and deployed to GitHub Pages.
 
@@ -18,7 +19,7 @@ This repository hosts the website for Politiche Forestali Ambientali, automatica
 
 To modify the site content:
 1. Edit the data in the [Google Sheets spreadsheet](https://docs.google.com/spreadsheets/d/1pSLbsjGTy2WlU2rEn2NZCnbU7dqk7Kwj8G7AGNYGf8I/edit?usp=sharing)
-2. The site will update automatically within 24 hours, or manually trigger the GitHub Actions workflow
+2. The site will update automatically
 
 ## Repository structure
 
